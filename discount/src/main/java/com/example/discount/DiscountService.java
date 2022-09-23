@@ -4,5 +4,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface DiscountService {
-	public double getDiscount(double amount);
+
+    public double getDiscount(double amount);
 }
