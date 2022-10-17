@@ -22,8 +22,8 @@ public class ShopItem {
 
     @Override
     public String toString() {
-        return "ShopItems [id=" + id + ", description=" + description + ", price=" + price + ", available_count="
-                + available_count + "]";
+        return "ShopItems [id=" + id + ", description=" + description + ", price=" + price + ", availableCount="
+                + availableCount + "]";
     }
 
     @Id
@@ -37,6 +37,6 @@ public class ShopItem {
     @Column(name = "price")
     private double price;
 
-    @Column(name = "available_count")
-    private int available_count;
+    @Column(name = "availableCount")
+    private int availableCount;
 }

@@ -9,7 +9,7 @@ public class ShopItemUtil {
         shopItem.setId(shopItemDto.getId());
         shopItem.setDescription(shopItemDto.getDescription());
         shopItem.setPrice(shopItemDto.getPrice());
-        shopItem.setAvailable_count(shopItemDto.getAvailable_count());
+        shopItem.setAvailableCount(shopItemDto.getAvailableCount());
         return shopItem;
     }
 
@@ -18,7 +18,10 @@ public class ShopItemUtil {
         shopItemDto.setId(shopItem.getId());
         shopItemDto.setDescription(shopItem.getDescription());
         shopItemDto.setPrice(shopItem.getPrice());
-        shopItemDto.setAvailable_count(shopItem.getAvailable_count());
+        shopItemDto.setAvailableCount(shopItem.getAvailableCount());
         return shopItemDto;
+    }
+
+    private ShopItemUtil() {
     }
 }
