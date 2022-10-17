@@ -1,6 +1,7 @@
 package com.example.orders.service;
 
 import com.example.discount.DiscountService;
+import com.example.items.dto.ShopItemDto;
 import com.example.items.service.ShopItemService;
 import com.example.orders.util.ShopOrderUtil;
 import com.example.orders.dto.ShopOrderDto;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ShopOrderServiceImpl implements ShopOrderService {
@@ -33,13 +35,13 @@ public class ShopOrderServiceImpl implements ShopOrderService {
 
     @Override
     public List<ShopOrderDto> getAllShopOrders() throws Exception {
-        List<ShopOrder> shopOrdersList = shopOrderRepository.findAll();
+        Optional<List<ShopOrder>> shopOrdersList = Optional.of(shopOrderRepository.findAll());
         List<ShopOrderDto> shopOrdersDtoList = new ArrayList<>();
 
         if (shopOrdersList.isEmpty()) {
             throw new Exception("ShopOrders list is empty!");
         } else {
-            for (ShopOrder shopOrder : shopOrdersList) {
+            for (ShopOrder shopOrder : shopOrdersList.get()) {
                 shopOrdersDtoList.add(ShopOrderUtil.copy(shopOrder));
             }
 
@@ -53,8 +55,13 @@ public class ShopOrderServiceImpl implements ShopOrderService {
     }
 
     @Override
-    public ShopOrderDto getShopOrderById(int id) {
-        return ShopOrderUtil.copy(shopOrderRepository.findById(id).get());
+    public ShopOrderDto getShopOrderById(int id) throws Exception {
+        Optional<ShopOrder> shopOrder = shopOrderRepository.findById(id);
+        if(shopOrder.isEmpty()){
+            throw new Exception("Cannot find order");
+        }else {
+            return ShopOrderUtil.copy(shopOrder.get());
+        }
     }
 
 
@@ -63,10 +70,10 @@ public class ShopOrderServiceImpl implements ShopOrderService {
         List<OrderItem> itemList = shopOrderDto.getItemsList();
 
         double totalBill = 0;
-        int item_id;
-        int item_qty;
+        int itemId;
+        int itemQty;
         double amount;
-        int ava_qty;
+        int avaQty;
         double totalAmount;
         double discount;
         double amtAfterDisc;
@@ -74,17 +81,22 @@ public class ShopOrderServiceImpl implements ShopOrderService {
         ShopOrder order;
         for (int i = 0; i < itemList.size(); i++) {
             item = itemList.get(i);
-            item_id = item.getItemId();
-            item_qty = item.getQuantity();
-            amount = shopItemService.getShopItemById(item_id).getPrice();
-            ava_qty = shopItemService.getShopItemById(item_id).getAvailable_count();
-            if (ava_qty < item_qty) {
+            itemId = item.getItemId();
+            itemQty = item.getQuantity();
+            Optional<ShopItemDto> itemFromDb = Optional.of(shopItemService.getShopItemById(itemId));
+            if (itemFromDb.isEmpty()){
+                throw new Exception("Cannot find item");
+            }else {
+                amount = itemFromDb.get().getPrice();
+                avaQty = itemFromDb.get().getAvailableCount();
+            }
+            if (avaQty < itemQty) {
                 throw new Exception("Insufficient stock");
             }
-            totalAmount = amount * item_qty;
+            totalAmount = amount * itemQty;
             totalBill += totalAmount;
 
-            shopItemService.updateItemCount(item_id, item_qty);
+            shopItemService.updateItemCount(itemId, itemQty);
 
         }
 

@@ -5,6 +5,7 @@ import com.example.items.service.ShopItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -15,12 +16,12 @@ public class ShopItemsController {
     private ShopItemService shopItemService;
 
     @PostMapping("/save")
-    public ShopItemDto saveShopItem(@RequestBody ShopItemDto shopItemDto) {
+    public ShopItemDto saveShopItem(@Valid @RequestBody ShopItemDto shopItemDto) {
         return shopItemService.saveShopItem(shopItemDto);
     }
 
     @PostMapping("/saveitemslist")
-    public List<ShopItemDto> saveShopItems(@RequestBody List<ShopItemDto> shopItemDtoList) {
+    public List<ShopItemDto> saveShopItems(@Valid @RequestBody List<ShopItemDto> shopItemDtoList) {
         return shopItemService.saveShopItemsList(shopItemDtoList);
     }
 
@@ -40,12 +41,12 @@ public class ShopItemsController {
     }
 
     @GetMapping("/get/{id}")
-    public ShopItemDto getShopItemById(@PathVariable int id) {
+    public ShopItemDto getShopItemById(@PathVariable int id) throws Exception {
         return shopItemService.getShopItemById(id);
     }
 
     @PutMapping("/update")
-    public ShopItemDto updateShopItem(@RequestBody ShopItemDto shopItemDto) {
+    public ShopItemDto updateShopItem(@Valid @RequestBody ShopItemDto shopItemDto) {
         return shopItemService.updateShopItem(shopItemDto);
     }
 }

@@ -11,7 +11,7 @@ public interface ShopOrderService {
 
     public void deleteShopOrderById(int id);
 
-    public ShopOrderDto getShopOrderById(int id);
+    public ShopOrderDto getShopOrderById(int id) throws Exception;
 
     public ShopOrderDto calculateTotalBill(ShopOrderDto shopOrderDto) throws Exception;
 

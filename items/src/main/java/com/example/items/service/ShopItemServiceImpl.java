@@ -10,6 +10,7 @@ import org.springframework.util.ObjectUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ShopItemServiceImpl implements ShopItemService {
@@ -44,13 +45,13 @@ public class ShopItemServiceImpl implements ShopItemService {
 
     @Override
     public List<ShopItemDto> getAllShopItems() throws Exception {
-        List<ShopItem> shopItemsList = shopItemRepository.findAll();
+        Optional<List<ShopItem>> shopItemsList = Optional.of(shopItemRepository.findAll());
         List<ShopItemDto> shopItemDtoList = new ArrayList<>();
 
         if (shopItemsList.isEmpty()) {
             throw new Exception("ShopItems list is empty!");
         } else {
-            for (ShopItem shopItem : shopItemsList) {
+            for (ShopItem shopItem : shopItemsList.get()) {
 
                 shopItemDtoList.add(ShopItemUtil.copy(shopItem));
             }
@@ -64,8 +65,13 @@ public class ShopItemServiceImpl implements ShopItemService {
     }
 
     @Override
-    public ShopItemDto getShopItemById(int id) {
-        return ShopItemUtil.copy(shopItemRepository.findById(id).get());
+    public ShopItemDto getShopItemById(int id) throws Exception {
+        Optional<ShopItem> shopItem = shopItemRepository.findById(id);
+        if(shopItem.isEmpty()){
+            throw new Exception("Cannot find item");
+        }else {
+            return ShopItemUtil.copy(shopItem.get());
+        }
     }
 
     @Override
@@ -77,11 +83,15 @@ public class ShopItemServiceImpl implements ShopItemService {
 
 
     @Override
-    public void updateItemCount(int id, int quantity) {
-
-        ShopItem shopItem = shopItemRepository.findById(id).get();
-        shopItem.setAvailable_count(shopItem.getAvailable_count() - quantity);
-        shopItemRepository.save(shopItem);
+    public void updateItemCount(int id, int quantity) throws Exception {
+        Optional<ShopItem> item = shopItemRepository.findById(id);
+        if(item.isEmpty()){
+            throw new Exception("Cannot find item");
+        }else {
+            ShopItem shopItem = item.get();
+            shopItem.setAvailableCount(shopItem.getAvailableCount() - quantity);
+            shopItemRepository.save(shopItem);
+        }
     }
 
 }

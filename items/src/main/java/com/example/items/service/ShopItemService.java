@@ -12,11 +12,11 @@ public interface ShopItemService {
 
     public void deleteShopItemById(int id);
 
-    public ShopItemDto getShopItemById(int id);
+    public ShopItemDto getShopItemById(int id) throws Exception;
 
     public ShopItemDto updateShopItem(ShopItemDto shopItemDto);
 
-    public void updateItemCount(int id, int quantity);
+    public void updateItemCount(int id, int quantity) throws Exception;
 
     public List<ShopItemDto> saveShopItemsList(List<ShopItemDto> shopItemDtoList);
 

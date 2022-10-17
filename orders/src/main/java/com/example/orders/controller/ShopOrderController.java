@@ -15,6 +15,7 @@ public class ShopOrderController {
     private ShopOrderService shopOrderService;
 
     public ShopOrderController() {
+
     }
 
     @GetMapping("/all")
@@ -33,7 +34,7 @@ public class ShopOrderController {
     }
 
     @GetMapping("/get/{id}")
-    public ShopOrderDto getShopOrderById(@PathVariable int id) {
+    public ShopOrderDto getShopOrderById(@PathVariable int id) throws Exception {
         return shopOrderService.getShopOrderById(id);
     }
 

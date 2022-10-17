@@ -14,10 +14,10 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="discount" target="11" />
-      <module name="items" target="11" />
-      <module name="normaldiscount" target="11" />
-      <module name="orders" target="11" />
+      <module name="discount" target="17" />
+      <module name="items" target="17" />
+      <module name="normaldiscount" target="17" />
+      <module name="orders" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

@@ -20,7 +20,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-public class ShopOrderControllerTest {
+class ShopOrderControllerTest {
 
     @InjectMocks
     ShopOrderController shopOrderController;
@@ -29,7 +29,7 @@ public class ShopOrderControllerTest {
     ShopOrderService shopOrderService;
 
     @Test
-    public void getOrderControllerTest() {
+    void getOrderControllerTest() throws Exception {
         List<OrderItem> orderItemList = Stream.of(new OrderItem(),
                         new OrderItem(),
                         new OrderItem())
@@ -40,7 +40,7 @@ public class ShopOrderControllerTest {
     }
 
     @Test
-    public void getOrdersControllerTest() throws Exception {
+    void getOrdersControllerTest() throws Exception {
         List<OrderItem> orderItemList = Stream.of(new OrderItem(),
                         new OrderItem(),
                         new OrderItem())
@@ -54,13 +54,13 @@ public class ShopOrderControllerTest {
     }
 
     @Test
-    public void deleteOrderControllerTest() {
+    void deleteOrderControllerTest() {
         shopOrderController.deleteById(1);
         verify(shopOrderService, times(1)).deleteShopOrderById(1);
     }
 
     @Test
-    public void saveOrderControllerTest() throws Exception {
+    void saveOrderControllerTest() throws Exception {
         List<OrderItem> orderItemList = Stream.of(new OrderItem(),
                         new OrderItem(),
                         new OrderItem())

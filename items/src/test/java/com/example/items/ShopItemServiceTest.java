@@ -32,7 +32,7 @@ public class ShopItemServiceTest {
     ShopItemRepository repo;
 
     @Test
-    public void saveItemServiceTest() {
+    void saveItemServiceTest() {
         ShopItemDto shopItemDto = new ShopItemDto(1, "test", 10.00, 20);
         ShopItem shopItem = new ShopItem(1, "test", 10.00, 20);
         Mockito.when(repo.save(Mockito.any())).thenReturn(shopItem);
@@ -40,7 +40,7 @@ public class ShopItemServiceTest {
     }
 
     @Test
-    public void saveItemsServiceTest() {
+    void saveItemsServiceTest() {
         ShopItem shopItem = new ShopItem(1, "test1", 10.00, 40);
 
         List<ShopItemDto> itemDtoList = Stream.of(new ShopItemDto(1, "test1", 10.00, 40),
@@ -52,7 +52,7 @@ public class ShopItemServiceTest {
     }
 
     @Test
-    public void updateItemServiceTest() {
+    void updateItemServiceTest() {
         ShopItemDto shopItemDto = new ShopItemDto(1, "test", 10.00, 20);
         ShopItem shopItem = new ShopItem(1, "test", 10.00, 20);
         Mockito.when(repo.save(Mockito.any())).thenReturn(shopItem);
@@ -60,7 +60,7 @@ public class ShopItemServiceTest {
     }
 
     @Test
-    public void getItemsServiceTest() throws Exception {
+    void getItemsServiceTest() throws Exception {
         List<ShopItem> itemList = Stream.of(new ShopItem(1, "test1", 10.00, 40),
                         new ShopItem(2, "test2", 20.00, 50),
                         new ShopItem(3, "test3", 30.00, 60))
@@ -70,7 +70,7 @@ public class ShopItemServiceTest {
     }
 
     @Test
-    public void getItemServiceTest() {
+    void getItemServiceTest() throws Exception {
         ShopItemDto shopItemDto = new ShopItemDto(1, "test", 10.00, 20);
         ShopItem shopItem = new ShopItem(1, "test", 10.00, 20);
         Mockito.when(repo.findById(Mockito.anyInt())).thenReturn(Optional.of(shopItem));
@@ -79,7 +79,7 @@ public class ShopItemServiceTest {
     }
 
     @Test
-    public void deleteItemServiceTest() {
+    void deleteItemServiceTest() {
         shopItemService.deleteShopItemById(1);
         verify(repo, times(1)).deleteById(1);
     }

@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotEmpty;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -14,8 +16,10 @@ public class OrderItemDto {
 
     private int orderItemId;
 
+    @NotEmpty
     private int itemId;
 
+    @NotEmpty
     private int quantity;
 
     private ShopOrder shopOrder;
