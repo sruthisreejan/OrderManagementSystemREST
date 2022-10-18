@@ -35,16 +35,6 @@ n
 >items/src/main/java/com/example/items/advisor/ItemAdvisor.java,f\c\fcfc046aa50f6674e1285acb381869cc0e85d926
 q
 Aorders/src/main/java/com/example/orders/advisor/OrderAdvisor.java,a\3\a3a587b0f8955da1cb9797a080ffef72e678d3a6
-@
-discount/pom.xml,9\d\9db454eceb62a9ed3ee20b334fb4eea93e87042c
-H
-festivaldiscount/pom.xml,4\d\4d1b7f66a92b600dd9b08c24b2a64601aac07cec
-=
-items/pom.xml,8\a\8a71dab19ec5d2dfad45697a6a8e0679d26bb3a4
-F
-normaldiscount/pom.xml,7\3\73c6ec5de91ec1a0c1b9d7ce59e518f0f7810e66
->
-orders/pom.xml,0\1\01b3e3de42987d9fc22b6ff5b601fbd176be2eae
 y
 Iitems/src/main/java/com/example/items/controller/ShopItemsController.java,8\a\8ab2d2624a8c9f0b7f3b4cef48c38ce0b11c9294
 r
