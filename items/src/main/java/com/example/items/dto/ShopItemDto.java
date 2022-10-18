@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Getter
@@ -21,9 +22,11 @@ public class ShopItemDto {
     @Size(min = 3, message = "Description must have at least 3 characters")
     private String description;
 
+    @NotNull
     @Range(min = 1, message = "Price must be greater than 0")
     private double price;
 
+    @NotNull
     @Range(min = 1, message = "Count must be greater than 0")
     private int availableCount;
 

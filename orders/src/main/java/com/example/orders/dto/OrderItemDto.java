@@ -5,8 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Range;
 
-import javax.validation.constraints.NotEmpty;
+
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -16,10 +18,12 @@ public class OrderItemDto {
 
     private int orderItemId;
 
-    @NotEmpty
+    @NotNull
+    @Range(min = 1, message = "Item id must be greater than 0")
     private int itemId;
 
-    @NotEmpty
+    @NotNull
+    @Range(min = 1, message = "Quantity must be greater than 0")
     private int quantity;
 
     private ShopOrder shopOrder;
