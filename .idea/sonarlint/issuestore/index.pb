@@ -43,3 +43,15 @@ v
 Fitems/src/main/java/com/example/items/service/ShopItemServiceImpl.java,4\3\435647c1bffbec25fab9f30518b66f20ef91f69f
 n
 >items/src/test/java/com/example/items/ShopItemServiceTest.java,0\e\0eefbc9a67883af52a7ca3dbfac0a34719a7433c
+@
+discount/pom.xml,9\d\9db454eceb62a9ed3ee20b334fb4eea93e87042c
+H
+festivaldiscount/pom.xml,4\d\4d1b7f66a92b600dd9b08c24b2a64601aac07cec
+=
+items/pom.xml,8\a\8a71dab19ec5d2dfad45697a6a8e0679d26bb3a4
+F
+normaldiscount/pom.xml,7\3\73c6ec5de91ec1a0c1b9d7ce59e518f0f7810e66
+>
+orders/pom.xml,0\1\01b3e3de42987d9fc22b6ff5b601fbd176be2eae
+n
+>orders/src/main/java/com/example/orders/OrdersApplication.java,9\4\945e6deee0775e2fc99bf0134ff5c3c9ad1b9146
